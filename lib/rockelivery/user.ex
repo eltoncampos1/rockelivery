@@ -5,6 +5,8 @@ defmodule Rockelivery.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:age, :address, :cep, :cpf, :email, :password, :name]
 
+  @derive {Jason.Encoder, only: [:age, :address, :cep, :cpf, :email, :name, :id]}
+
   schema "users" do
     field :age, :integer
     field :address, :string
@@ -35,7 +37,7 @@ defmodule Rockelivery.User do
   defp put_password_hash(
          %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
        ) do
-    change(changeset, %{password_hash: Pbkdf2.add_hash(password)})
+    change(changeset, Pbkdf2.add_hash(password))
   end
 
   defp put_password_hash(changeset), do: changeset
