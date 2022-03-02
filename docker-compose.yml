@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-  exlivery_dev:
+  rockelivery_dev:
     image: postgres
-    container_name: exlivery_dev
+    container_name: rockelivery_dev
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=blog_dev
+      - POSTGRES_DB=rockelivery_dev
     volumes:
       - pg:/data/postgres
 
