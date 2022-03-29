@@ -21,6 +21,14 @@ config :rockelivery, RockeliveryWeb.Endpoint,
   pubsub_server: Rockelivery.PubSub,
   live_view: [signing_salt: "H76Nf78Q"]
 
+config :rockelivery, RockeliveryWeb.Auth.Guardian,
+  issuer: "rockelivery",
+  secret_key: "mbfBRQr7od3/oHkdEsDzWHe5SbB8QdvZSh6CUsmw/J2WA48Xm4TJVtR00ua0t3YG"
+
+config :rockelivery, RockeliveryWeb.Auth.Pipeline,
+  module: RockeliveryWeb.Auth.Guardian,
+  error_handler: RockeliveryWeb.Auth.ErrorHandler
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
